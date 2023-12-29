@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Crocodile Game</h1>
+
+<div id="word-container">
+    <h2 id="word"></h2>
+    <img id="image" src="" alt="Image">
+    <p id="description"></p>
+    <p id="categories"></p>
+</div>
+
+<button onclick="nextWord()">Next Word</button>
+
+<script>
+    // Sample dictionary JSON
+    const dictionary = [
+        {
+            "word": "cat",
+            "complexity": "1",
+            "description": "animal who said meow",
+            "categories": ["general", "animals"],
+            "image": "LINK_TO_IMAGE_1"
+        },
+        {
+            "word": "zombeaver",
+            "complexity": "3",
+            "description": "Zombi beaver from movie Zombiever",
+            "categories": ["monsters", "movies"],
+            "image": "LINK_TO_IMAGE_2"
+        }
+        // Add more words as needed
+    ];
+
+    let currentWordIndex = 0;
+
+    function displayWord(wordIndex) {
+        const wordElement = document.getElementById('word');
+        const imageElement = document.getElementById('image');
+        const descriptionElement = document.getElementById('description');
+        const categoriesElement = document.getElementById('categories');
+
+        const currentWord = dictionary[wordIndex];
+
+        wordElement.textContent = currentWord.word;
+        imageElement.src = currentWord.image;
+        descriptionElement.textContent = currentWord.description;
+        categoriesElement.textContent = 'Categories: ' + currentWord.categories.join(', ');
+    }
+
+    function nextWord() {
+        currentWordIndex = (currentWordIndex + 1) % dictionary.length;
+        displayWord(currentWordIndex);
+    }
+
+    // Initial display
+    displayWord(currentWordIndex);
+</script>
+
+</body>
+</html>
